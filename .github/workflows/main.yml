@@ -11,7 +11,7 @@ jobs:
       matrix:
         distro: [ros:rolling-ros-base-focal, ros:foxy-ros-base-focal]
     container:
-      image: ${{matrix.distro}}
+      image: ${{ matrix.distro }}
     steps:
       - uses: actions/checkout@v2
       - name: Build ros1-bridge
