@@ -1,0 +1,20 @@
+# This config uses industrial_ci (https://github.com/ros-industrial/industrial_ci.git).
+
+name: CI
+
+on: [push, pull_request] # on all pushes and PRs
+
+jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    container:
+      image: ros:rolling-ros-base-focal
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build ros1-bridge
+        run: |
+          bash ./build_bridge.sh
+      - name: Test ros1-bridge
+        run: |
+          pwd
+          ls
