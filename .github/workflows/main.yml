@@ -16,5 +16,4 @@ jobs:
           bash ./build_bridge.sh
       - name: Test ros1-bridge
         run: |
-          pwd
-          ls
+          bash ./test_bridge.sh
