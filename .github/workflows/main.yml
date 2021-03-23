@@ -16,7 +16,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build ros1-bridge
         run: |
-          bash ./build_bridge.sh
-      - name: Test ros1-bridge
-        run: |
-          bash ./test_bridge.sh
+          echo $ROS1_DISTRO
+          echo $ROS2_DISTRO
+          #bash ./build_bridge.sh
+      #- name: Test ros1-bridge
+      #  run: |
+      #    bash ./test_bridge.sh
