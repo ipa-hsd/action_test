@@ -17,6 +17,7 @@ jobs:
       - name: Build ros1-bridge
         run: |
           bash ./build_bridge.sh
+          echo $GITHUB_WORKSPACE
           echo ${{ github.workspace }}
           ls
       - name: Test ros1-bridge
