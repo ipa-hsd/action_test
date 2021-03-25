@@ -20,9 +20,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.CCACHE_DIR }}
-          key: ccache-${{ matrix.ros_distro }}-${{ matrix.ros_repo }}-${{github.run_id}}
+          key: ccache-${{ matrix.distro }}-${{github.run_id}}
           restore-keys: |
-            ccache-${{ matrix.ros_distro }}-${{ matrix.ros_repo }}
+            ccache-${{ matrix.distro }}
       - name: Build ros1-bridge
         run: |
           bash ./build_bridge.sh
