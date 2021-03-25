@@ -9,13 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        distro: ["ros:rolling-ros1-bridge-focal", "ros:foxy-ros1-bridge-focal"]
+        distro: ["ros:foxy-ros-base-focal"]
     container:
       image: ${{ matrix.distro }}
     env:
       CCACHE_DIR: "${{ github.workspace }}/.ccache"
     steps:
       - uses: actions/checkout@v2
+      - name: install ccache
+        run: |
+          sudo apt-get update -y
+          sudo apt-get -qq install ccache
       - name: ccache cache
         uses: actions/cache@v2
         with:
@@ -23,12 +27,14 @@ jobs:
           key: ccache-${{ matrix.distro }}-${{github.run_id}}
           restore-keys: |
             ccache-${{ matrix.distro }}
-      - name: Build ros1-bridge
+      - name: ccache stats
+        run: ccache -s
+      - name: Build workspace
         run: |
           bash ./build_bridge.sh
           echo $GITHUB_WORKSPACE
           echo ${{ github.workspace }}
           ls
-      - name: Test ros1-bridge
-        run: |
-          bash ./test_bridge.sh
+      # - name: Test ros1-bridge
+      #   run: |
+      #     bash ./test_bridge.sh
