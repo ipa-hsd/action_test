@@ -2,34 +2,6 @@
 Changelog for package demo_nodes_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.13.0 (2021-03-25)
--------------------
-* Add a demo for the new ParameterEventHandler class (`#486 <https://github.com/ros2/demos/issues/486>`_)
-* Contributors: Michael Jeronimo
-
-0.12.1 (2021-03-18)
--------------------
-* Filter qos overrides in paramter events demos (`#491 <https://github.com/ros2/demos/issues/491>`_)
-* Update code now that parameter types are static by default (`#487 <https://github.com/ros2/demos/issues/487>`_)
-* Contributors: Ivan Santiago Paunovic
-
-0.12.0 (2021-01-25)
--------------------
-* Update logging macros (`#476 <https://github.com/ros2/demos/issues/476>`_)
-* Contributors: Audrow Nash
-
-0.11.0 (2020-12-10)
--------------------
-* Make sure to wait for the service before declaring events. (`#473 <https://github.com/ros2/demos/issues/473>`_)
-* Update the package.xml files with the latest Open Robotics maintainers (`#466 <https://github.com/ros2/demos/issues/466>`_)
-* Contributors: Chris Lalancette, Michael Jeronimo
-
-0.10.1 (2020-09-21)
--------------------
-
-0.10.0 (2020-06-17)
--------------------
-
 0.9.3 (2020-06-01)
 ------------------
 
