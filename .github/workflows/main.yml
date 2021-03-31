@@ -28,7 +28,7 @@ jobs:
           path: ${{ env.CCACHE_DIR }}
           key: ccache-${{ matrix.distro }}-${{github.run_id}}
           restore-keys: |
-            ccache-${{ matrix.distro }}
+            dummy
       - name: ccache stats
         run: ccache -s
       - name: Build workspace
