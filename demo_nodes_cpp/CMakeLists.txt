@@ -56,10 +56,10 @@ custom_executable(parameters set_and_get_parameters_async)
 add_library(timers_library SHARED
   src/timers/one_off_timer.cpp
   src/timers/reuse_timer.cpp)
-# add_library(services_library SHARED
-#   src/services/add_two_ints_server.cpp
-#   src/services/add_two_ints_client.cpp
-#   src/services/add_two_ints_client_async.cpp)
+add_library(services_library SHARED
+  src/services/add_two_ints_server.cpp
+  src/services/add_two_ints_client.cpp
+  src/services/add_two_ints_client_async.cpp)
 add_library(parameters_library SHARED
   src/parameters/list_parameters.cpp
   src/parameters/parameter_blackboard.cpp
@@ -74,7 +74,7 @@ add_library(topics_library SHARED
   src/topics/listener_serialized_message.cpp
   src/topics/listener_best_effort.cpp)
 add_demo_dependencies(timers_library)
-# add_demo_dependencies(services_library)
+add_demo_dependencies(services_library)
 add_demo_dependencies(parameters_library)
 add_demo_dependencies(topics_library)
 
@@ -85,12 +85,12 @@ rclcpp_components_register_node(timers_library
   PLUGIN "demo_nodes_cpp::ReuseTimerNode"
   EXECUTABLE reuse_timer)
 
-# rclcpp_components_register_node(services_library
-#   PLUGIN "demo_nodes_cpp::ServerNode"
-#   EXECUTABLE add_two_ints_server)
-# rclcpp_components_register_node(services_library
-#   PLUGIN "demo_nodes_cpp::ClientNode"
-#   EXECUTABLE add_two_ints_client_async)
+rclcpp_components_register_node(services_library
+  PLUGIN "demo_nodes_cpp::ServerNode"
+  EXECUTABLE add_two_ints_server)
+rclcpp_components_register_node(services_library
+  PLUGIN "demo_nodes_cpp::ClientNode"
+  EXECUTABLE add_two_ints_client_async)
 
 rclcpp_components_register_node(parameters_library
   PLUGIN "demo_nodes_cpp::ListParameters"
@@ -129,7 +129,7 @@ rclcpp_components_register_node(topics_library
 
 install(TARGETS
   timers_library
-  # services_library
+  services_library
   parameters_library
   topics_library
   ARCHIVE DESTINATION lib
@@ -153,14 +153,14 @@ if(BUILD_TESTING)
     set_and_get_parameters_async
     set_and_get_parameters
     "talker:listener")
-  # set(service_tutorial_tests
-  #   "add_two_ints_server:add_two_ints_client"
-  #   "add_two_ints_server:add_two_ints_client_async"
-  # )
+  set(service_tutorial_tests
+    "add_two_ints_server:add_two_ints_client"
+    "add_two_ints_server:add_two_ints_client_async"
+  )
 
   macro(tests)
     set(tutorial_tests_to_test ${tutorial_tests})
-    # list(APPEND tutorial_tests_to_test ${service_tutorial_tests})
+    list(APPEND tutorial_tests_to_test ${service_tutorial_tests})
 
     foreach(tutorial_test ${tutorial_tests_to_test})
       string(REPLACE ":" ";" tutorial_executables "${tutorial_test}")
