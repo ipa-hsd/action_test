@@ -20,8 +20,6 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get -qq install ccache
-          sudo /usr/sbin/update-ccache-symlinks
-          export PATH="/usr/lib/ccache:$PATH"
       - name: ccache cache
         uses: actions/cache@v2
         with:
@@ -34,6 +32,8 @@ jobs:
           ccache -s
       - name: Build workspace
         run: |
+          sudo /usr/sbin/update-ccache-symlinks
+          export PATH="/usr/lib/ccache:$PATH"
           bash ./build_bridge.sh
           echo $GITHUB_WORKSPACE
           echo ${{ github.workspace }}
