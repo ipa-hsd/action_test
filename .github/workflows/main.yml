@@ -22,7 +22,6 @@ jobs:
           sudo apt-get -qq install ccache
           sudo /usr/sbin/update-ccache-symlinks
           export PATH="/usr/lib/ccache:$PATH"
-          du -sh /home/runner/.ccache
       - name: ccache cache
         uses: actions/cache@v2
         with:
@@ -31,7 +30,9 @@ jobs:
           restore-keys: |
             ccache-${{ matrix.distro }}
       - name: ccache stats
-        run: ccache -s
+        run: |
+          ccache -s
+          du -sh /home/runner/.ccache
       - name: Build workspace
         run: |
           bash ./build_bridge.sh
