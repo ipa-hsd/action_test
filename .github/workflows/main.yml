@@ -20,18 +20,15 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get -qq install ccache
-          whereis ccache
           sudo /usr/sbin/update-ccache-symlinks
           export PATH="/usr/lib/ccache:$PATH"
-          which g++ gcc
-          ls /usr/lib/ccache
       - name: ccache cache
         uses: actions/cache@v2
         with:
           path: ${{ env.CCACHE_DIR }}
           key: ccache-${{ matrix.distro }}-${{github.run_id}}
           restore-keys: |
-            ccache-${{ matrix.distro }}
+            dummy
       - name: ccache stats
         run: ccache -s
       - name: Build workspace
