@@ -7,4 +7,4 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 # cp -r $GITHUB_WORKSPACE ~/colcon_ws/src
 rosdep update
 rosdep install --from-paths . --ignore-src -r -y
-colcon build --symlink-install
+colcon build --symlink-install --event-handlers console_direct+

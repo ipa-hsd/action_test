@@ -13,7 +13,7 @@ jobs:
     container:
       image: ${{ matrix.distro }}
     env:
-      CCACHE_DIR: "/github/home/.ccache"
+      CCACHE_DIR: "/home/runner/.ccache"
     steps:
       - uses: actions/checkout@v2
       - name: install ccache
@@ -22,7 +22,6 @@ jobs:
           sudo apt-get -qq install ccache
           sudo /usr/sbin/update-ccache-symlinks
           export PATH="/usr/lib/ccache:$PATH"
-          du -sh /github/home/.ccache
       - name: ccache cache
         uses: actions/cache@v2
         with:
@@ -33,7 +32,6 @@ jobs:
       - name: ccache stats
         run: |
           ccache -s
-          du -sh /github/home/.ccache
       - name: Build workspace
         run: |
           bash ./build_bridge.sh
