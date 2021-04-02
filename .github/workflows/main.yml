@@ -32,9 +32,7 @@ jobs:
           ccache -s
       - name: Build workspace
         run: |
-          sudo /usr/sbin/update-ccache-symlinks
-          export PATH="/usr/lib/ccache:$PATH"
           bash ./build_bridge.sh
-      # - name: Test ros1-bridge
-      #   run: |
-      #     bash ./test_bridge.sh
+      - name: Test ros1-bridge
+        run: |
+          bash ./test_bridge.sh
